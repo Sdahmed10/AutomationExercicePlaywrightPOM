@@ -10,6 +10,8 @@ public class LoginTest extends LaunchBrowser {
         LoginPage loginpage = new LoginPage(page);
         loginpage.OpenURL();
         loginpage.OpenLoginPage();
-        loginpage.Login();
+        loginpage.LoginWithValidCredentials();
+        loginpage.LoginWithInvalidEmail();
+        loginpage.LoginWithInvalidPassword();
     }
 }

@@ -12,7 +12,7 @@ public class AddToCartTest extends LaunchBrowser {
         LoginPage loginPage = new LoginPage(page);
         loginPage.OpenURL();
         loginPage.OpenLoginPage();
-        loginPage.Login();
+        loginPage.LoginWithValidCredentials();
     }
 
     @Test(priority = 2)
