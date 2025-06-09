@@ -10,16 +10,16 @@ public class AddToCartTest extends LaunchBrowser {
     @Test(priority = 1)
     public void LoginTest(){
         LoginPage loginPage = new LoginPage(page);
-        loginPage.OpenURL();
-        loginPage.OpenLoginPage();
-        loginPage.LoginWithValidCredentials();
+        loginPage.openURL();
+        loginPage.openLoginPage();
+        loginPage.loginWithValidCredentials();
     }
 
     @Test(priority = 2)
     public void AddToCart1(){
         AddToCart addToCartTest = new AddToCart(page);
-        addToCartTest.OpenProduct();
-        addToCartTest.AddProductToCart();
-        addToCartTest.ContinueShoppingCart();
+        addToCartTest.openProduct();
+        addToCartTest.addProductToCart();
+        addToCartTest.continueShopping();
     }
 }
