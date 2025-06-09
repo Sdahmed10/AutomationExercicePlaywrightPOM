@@ -36,7 +36,7 @@ public class LoginPage {
     /**
      * Opens the Automation Exercise website
      */
-    public void openURL() {
+    public void OpenURL() {
         page.navigate("https://automationexercise.com/");
         assertThat(page).hasTitle("Automation Exercise");
         System.out.println("Page opened");
@@ -45,7 +45,7 @@ public class LoginPage {
     /**
      * Navigates to the login page
      */
-    public void openLoginPage() {
+    public void OpenLoginPage() {
         page.locator(SIGNUP_LOGIN_LINK).click();
         Locator loginTitle = page.locator(LOGIN_TITLE);
         page.waitForSelector(LOGIN_TITLE);
@@ -56,47 +56,48 @@ public class LoginPage {
     /**
      * Performs login with valid credentials and logs out
      */
-    public void loginWithValidCredentials() {
-        login(VALID_EMAIL, VALID_PASSWORD);
-        verifySuccessfulLogin();
-        logout();
-    }
-
-    /**
-     * Attempts login with invalid email
-     */
-    public void loginWithInvalidEmail() {
-        login(INVALID_EMAIL, VALID_PASSWORD);
-        verifyFailedLogin("LoginFailedWithInvalidEmail.png");
-    }
-
-    /**
-     * Attempts login with invalid password
-     */
-    public void loginWithInvalidPassword() {
-        login(VALID_EMAIL, INVALID_PASSWORD);
-        verifyFailedLogin("LoginFailedWithInvalidPassword.png");
-    }
-
-    /**
-     * Helper method to perform login
-     */
-    private void login(String email, String password) {
-        page.locator(EMAIL_INPUT).fill(email);
-        page.locator(PASSWORD_INPUT).fill(password);
+    public void LoginWithValidCredentials() {
+        page.locator(EMAIL_INPUT).fill(VALID_EMAIL);
+        page.locator(PASSWORD_INPUT).fill(VALID_PASSWORD);
         page.locator(LOGIN_BUTTON).click();
-    }
-
-    /**
-     * Verifies successful login and performs logout
-     */
-    private void verifySuccessfulLogin() {
         Locator logoutLink = page.locator(LOGOUT_LINK);
         page.waitForSelector(LOGOUT_LINK);
         assertThat(logoutLink).isVisible();
         System.out.println("Success login");
         
         logout();
+    }
+
+    /**
+     * Attempts login with invalid email
+     */
+    public void LoginWithInvalidEmail() {
+        page.locator(EMAIL_INPUT).fill(INVALID_EMAIL);
+        page.locator(PASSWORD_INPUT).fill(VALID_PASSWORD);
+        page.locator(LOGIN_BUTTON).click();
+        Locator errorMessage = page.locator(ERROR_MESSAGE);
+        page.waitForSelector(ERROR_MESSAGE);
+        page.screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get("LoginFailedWithInvalidEmail.png"))
+                .setFullPage(true));
+        assertThat(errorMessage).isVisible();
+        System.out.println("Failed login with invalid email");
+    }
+
+    /**
+     * Attempts login with invalid password
+     */
+    public void LoginWithInvalidPassword() {
+        page.locator(EMAIL_INPUT).fill(VALID_EMAIL);
+        page.locator(PASSWORD_INPUT).fill(INVALID_PASSWORD);
+        page.locator(LOGIN_BUTTON).click();
+        Locator errorMessage = page.locator(ERROR_MESSAGE);
+        page.waitForSelector(ERROR_MESSAGE);
+        page.screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get("LoginFailedWithInvalidPassword.png"))
+                .setFullPage(true));
+        assertThat(errorMessage).isVisible();
+        System.out.println("Failed login with invalid password");
     }
 
     /**
@@ -113,28 +114,10 @@ public class LoginPage {
     private void verifyLogout() {
         Locator loginTitle = page.locator(LOGIN_TITLE);
         page.waitForSelector(LOGIN_TITLE);
-        takeScreenshot("LogoutSuccess.png");
+        page.screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get("Logout Success.png"))
+                .setFullPage(true));
         assertThat(loginTitle).isVisible();
         System.out.println("Success logout");
-    }
-
-    /**
-     * Verifies failed login attempt
-     */
-    private void verifyFailedLogin(String screenshotName) {
-        Locator errorMessage = page.locator(ERROR_MESSAGE);
-        page.waitForSelector(ERROR_MESSAGE);
-        takeScreenshot(screenshotName);
-        assertThat(errorMessage).isVisible();
-        System.out.println("Failed login with invalid credentials");
-    }
-
-    /**
-     * Takes a screenshot of the current page
-     */
-    private void takeScreenshot(String fileName) {
-        page.screenshot(new Page.ScreenshotOptions()
-                .setPath(Paths.get(fileName))
-                .setFullPage(true));
     }
 }
