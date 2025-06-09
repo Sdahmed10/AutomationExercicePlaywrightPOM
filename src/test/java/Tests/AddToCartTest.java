@@ -10,9 +10,9 @@ public class AddToCartTest extends LaunchBrowser {
     @Test(priority = 1)
     public void LoginTest(){
         LoginPage loginPage = new LoginPage(page);
-        loginPage.openURL();
-        loginPage.openLoginPage();
-        loginPage.loginWithValidCredentials();
+        loginPage.OpenURL();
+        loginPage.OpenLoginPage();
+        loginPage.LoginWithValidCredentials();
     }
 
     @Test(priority = 2)
