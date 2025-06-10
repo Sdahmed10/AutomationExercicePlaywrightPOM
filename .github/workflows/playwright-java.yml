@@ -38,4 +38,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-artifacts
-          path: target/
+          path: |
+            target/surefire-reports
+            target/screenshots
