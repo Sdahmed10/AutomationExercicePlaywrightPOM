@@ -18,8 +18,8 @@ public class AddToCartTest extends LaunchBrowser {
     @Test(priority = 2)
     public void AddToCart1(){
         AddToCart addToCartTest = new AddToCart(page);
-        addToCartTest.openProduct();
-        addToCartTest.addProductToCart();
-        addToCartTest.continueShopping();
+        addToCartTest.OpenProduct();
+        addToCartTest.AddProductToCart();
+        addToCartTest.ContinueShoppingCart();
     }
 }
