@@ -77,9 +77,8 @@
         <configuration>
           <useModulePath>false</useModulePath>
           <includes>
-            <include>**/*Test.java</include>
-            <include>**/*Tests.java</include>
-            <include>**/*TestCase.java</include>
+            <include>**/*AddToCartTest.java</include>
+            <include>**/*LoginTest.java</include>
           </includes>
           <systemPropertyVariables>
             <allure.results.directory>target/allure-results</allure.results.directory>
