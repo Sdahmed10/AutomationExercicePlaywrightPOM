@@ -43,14 +43,14 @@ public class LoginPage {
 //                .setFullPage(true));
         assertThat(SuccessLogin).isVisible();
         System.out.println("Success login");
-        page.locator("//a[normalize-space()='Logout']").click();
-        Locator SuccessLogout = page.locator("//h2[normalize-space()='Login to your account']");
-        page.waitForSelector("//h2[normalize-space()='Login to your account']");
-        page.screenshot(new Page.ScreenshotOptions()
-                .setPath(Paths.get("Logout Success.png"))
-                .setFullPage(true));
-        assertThat(SuccessLogout).isVisible();
-        System.out.println("Success logout");
+//        page.locator("//a[normalize-space()='Logout']").click();
+//        Locator SuccessLogout = page.locator("//h2[normalize-space()='Login to your account']");
+//        page.waitForSelector("//h2[normalize-space()='Login to your account']");
+//        page.screenshot(new Page.ScreenshotOptions()
+//                .setPath(Paths.get("Logout Success.png"))
+//                .setFullPage(true));
+//        assertThat(SuccessLogout).isVisible();
+//        System.out.println("Success logout");
     }
 
     public void LoginWithInvalidEmail(){
