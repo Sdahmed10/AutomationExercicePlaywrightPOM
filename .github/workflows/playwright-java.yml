@@ -1,4 +1,4 @@
-name: Playwright Java CI
+name: Test de monProjectAutomationExercise
 
 on:
   push:
@@ -7,26 +7,33 @@ on:
     branches: [ main ]
 
 jobs:
-  run-tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '23'
           distribution: 'temurin'
+          java-version: '23'
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Cache Maven packages
+        uses: actions/cache@v3
         with:
-          node-version: '20'
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
-      - name: Install Playwright browsers
-        run: npx playwright install
-
-      - name: Build and test with Maven
+      - name: Install dependencies and run tests
         run: mvn clean test
+
+      - name: Archive test results (screenshots, etc.)
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-artifacts
+          path: target/
