@@ -15,13 +15,13 @@ public class LoginPage {
         this.page = page;
     }
 
-    public void OpenURL(){
+    public void OpenURL() {
         page.navigate("https://automationexercise.com/");
         assertThat(page).hasTitle("Automation Exercise");
         System.out.println("Page opened");
     }
 
-    public void OpenLoginPage(){
+    public void OpenLoginPage() {
         page.locator("//a[normalize-space()='Signup / Login']").click();
         Locator text = page.locator("//h2[normalize-space()='Login to your account']");
         page.waitForSelector("//h2[normalize-space()='Login to your account']");
@@ -32,7 +32,7 @@ public class LoginPage {
         System.out.println("Login page opened successfully");
     }
 
-    public void LoginWithValidCredentials(){
+    public void LoginWithValidCredentials() {
         page.locator("//input[@data-qa='login-email']").fill("Ahmaddd+1111@gmail.com");
         page.locator("//input[@placeholder='Password']").fill("123456Aa@");
         page.locator("//button[normalize-space()='Login']").click();
@@ -43,39 +43,44 @@ public class LoginPage {
 //                .setFullPage(true));
         assertThat(SuccessLogin).isVisible();
         System.out.println("Success login");
-//        page.locator("//a[normalize-space()='Logout']").click();
-//        Locator SuccessLogout = page.locator("//h2[normalize-space()='Login to your account']");
-//        page.waitForSelector("//h2[normalize-space()='Login to your account']");
-//        page.screenshot(new Page.ScreenshotOptions()
-//                .setPath(Paths.get("Logout Success.png"))
-//                .setFullPage(true));
-//        assertThat(SuccessLogout).isVisible();
-//        System.out.println("Success logout");
+        Logout();
+
     }
 
-    public void LoginWithInvalidEmail(){
+    public void LoginWithInvalidEmail() {
         page.locator("//input[@data-qa='login-email']").fill("Ahmaddd+12111@gmail.com");
         page.locator("//input[@placeholder='Password']").fill("123456Aa@");
         page.locator("//button[normalize-space()='Login']").click();
         Locator FailedLogin = page.locator("//p[normalize-space()='Your email or password is incorrect!']");
         page.waitForSelector("//p[normalize-space()='Your email or password is incorrect!']");
-        page.screenshot(new Page.ScreenshotOptions()
-                .setPath(Paths.get("LoginFailedWithInvalidEmail.png"))
-                .setFullPage(true));
+//        page.screenshot(new Page.ScreenshotOptions()
+//                .setPath(Paths.get("LoginFailedWithInvalidEmail.png"))
+//                .setFullPage(true));
         assertThat(FailedLogin).isVisible();
         System.out.println("Failed login with invalid email");
     }
 
-    public void LoginWithInvalidPassword(){
+    public void LoginWithInvalidPassword() {
         page.locator("//input[@data-qa='login-email']").fill("Ahmaddd+1111@gmail.com");
         page.locator("//input[@placeholder='Password']").fill("123456456Aa@");
         page.locator("//button[normalize-space()='Login']").click();
         Locator FailedLogin = page.locator("//p[normalize-space()='Your email or password is incorrect!']");
         page.waitForSelector("//p[normalize-space()='Your email or password is incorrect!']");
-        page.screenshot(new Page.ScreenshotOptions()
-                .setPath(Paths.get("LoginFailedWithInvalidPassword.png"))
-                .setFullPage(true));
+//        page.screenshot(new Page.ScreenshotOptions()
+//                .setPath(Paths.get("LoginFailedWithInvalidPassword.png"))
+//                .setFullPage(true));
         assertThat(FailedLogin).isVisible();
         System.out.println("Failed login with invalid Password");
+    }
+
+    private void Logout() {
+        page.locator("//a[normalize-space()='Logout']").click();
+        Locator SuccessLogout = page.locator("//h2[normalize-space()='Login to your account']");
+        page.waitForSelector("//h2[normalize-space()='Login to your account']");
+//        page.screenshot(new Page.ScreenshotOptions()
+//                .setPath(Paths.get("Logout Success.png"))
+//                .setFullPage(true));
+        assertThat(SuccessLogout).isVisible();
+        System.out.println("Success logout");
     }
 }
