@@ -76,10 +76,9 @@
         <version>3.1.2</version>
         <configuration>
           <useModulePath>false</useModulePath>
-          <includes>
-            <include>**/*AddToCartTest.java</include>
-            <include>**/*LoginTest.java</include>
-          </includes>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
           <systemPropertyVariables>
             <allure.results.directory>target/allure-results</allure.results.directory>
           </systemPropertyVariables>
