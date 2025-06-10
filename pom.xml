@@ -76,6 +76,11 @@
         <version>3.1.2</version>
         <configuration>
           <useModulePath>false</useModulePath>
+          <includes>
+            <include>**/*Test.java</include>
+            <include>**/*Tests.java</include>
+            <include>**/*TestCase.java</include>
+          </includes>
           <systemPropertyVariables>
             <allure.results.directory>target/allure-results</allure.results.directory>
           </systemPropertyVariables>
